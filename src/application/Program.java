@@ -69,27 +69,32 @@ public class Program {
 
 		File path = new File(strPath);
 
-		//listing folders
-		
-		File[] folders = path.listFiles(File::isDirectory);
-		System.out.println("FOLDERS:");
-		for (File folder : folders) {
-			System.out.println(folder);
-
-		}
+		/*
+		 * //listing folders
+		 * 
+		 * File[] folders = path.listFiles(File::isDirectory);
+		 * System.out.println("FOLDERS:"); for (File folder : folders) {
+		 * System.out.println(folder);
+		 * 
+		 * }
+		 */
 
 		//listing files
 		
-		File[] files = path.listFiles(File::isFile);
-		System.out.println("FILES:");
-		for (File file : files) {
-			System.out.println(file);
-		}
-
-		//create subfolder
+		/*
+		 * File[] files = path.listFiles(File::isFile); System.out.println("FILES:");
+		 * for (File file : files) { System.out.println(file); }
+		 * 
+		 * //create subfolder
+		 * 
+		 * boolean success =new File(strPath + "\\SubFolder").mkdir();
+		 * System.out.println("Directory created successfully: " + success);
+		 */
 		
-		boolean success =new File(strPath + "\\SubFolder").mkdir();
-		System.out.println("Directory created successfully: " + success);
+		//capturing the file name or path
+		
+		System.out.println("getName: " + path.getName());
+		System.out.println("getParent: " + path.getParent());
 		
 		sc.close();
 	}
