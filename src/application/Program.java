@@ -1,7 +1,7 @@
 package application;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Program {
@@ -57,6 +57,7 @@ public class Program {
 	// Block try-with-resources
 	
 		
+	/*	
 		String path = "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
 
 		try(BufferedReader br=new BufferedReader(new FileReader(path))){
@@ -71,6 +72,22 @@ public class Program {
 			System.out.println("Error: " + e.getMessage());
 		}
 		
-	}	
+		*/
 		
+		
+		String[] lines= new String[] {"Good mornig", "Good Afternoon", "Good night"};
+		
+		String path = "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
+		
+		try (BufferedWriter bw=new BufferedWriter(new FileWriter(path, true))){
+			for(String line: lines) {
+				bw.write(line);
+				bw.newLine();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 }
