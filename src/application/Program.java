@@ -1,8 +1,7 @@
 package application;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.File;
+import java.util.Scanner;
 
 public class Program {
 
@@ -17,77 +16,82 @@ public class Program {
 		 * sc.close(); } } }
 		 */
 
-		//Second example code
-		
+		// Second example code
+
 		/*
-		String path = "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
-		FileReader fr = null;
-		BufferedReader br = null;
+		 * String path =
+		 * "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
+		 * FileReader fr = null; BufferedReader br = null;
+		 * 
+		 * try { fr = new FileReader(path); br = new BufferedReader(fr);
+		 * 
+		 * String line = br.readLine();
+		 * 
+		 * while (line != null) { System.out.println(line); line = br.readLine(); } }
+		 * catch (IOException e) { System.out.println("Error: " + e.getMessage()); }
+		 * 
+		 * finally { try {
+		 * 
+		 * if (br != null) { br.close(); } if (fr != null) { fr.close(); }
+		 * 
+		 * } catch (IOException e) { e.printStackTrace(); } } }
+		 */
 
-		try {
-			fr = new FileReader(path);
-			br = new BufferedReader(fr);
+		// Block try-with-resources
 
-			String line = br.readLine();
+		/*
+		 * String path =
+		 * "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
+		 * 
+		 * try(BufferedReader br=new BufferedReader(new FileReader(path))){
+		 * 
+		 * String line = br.readLine();
+		 * 
+		 * while (line != null) { System.out.println(line); line = br.readLine(); } }
+		 * catch (IOException e) { System.out.println("Error: " + e.getMessage()); }
+		 */
 
-			while (line != null) {
-				System.out.println(line);
-				line = br.readLine();
-			}
-		} catch (IOException e) {
-			System.out.println("Error: " + e.getMessage());
+		/*
+		 * String[] lines= new String[] {"Good mornig", "Good Afternoon", "Good night"};
+		 * 
+		 * String path =
+		 * "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
+		 * 
+		 * try (BufferedWriter bw=new BufferedWriter(new FileWriter(path, true))){
+		 * for(String line: lines) { bw.write(line); bw.newLine(); } } catch
+		 * (IOException e) { e.printStackTrace(); }
+		 */
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter a folder path: ");
+		String strPath = sc.nextLine();
+
+		File path = new File(strPath);
+
+		//listing folders
+		
+		File[] folders = path.listFiles(File::isDirectory);
+		System.out.println("FOLDERS:");
+		for (File folder : folders) {
+			System.out.println(folder);
+
 		}
 
-		finally {
-			try {
-
-				if (br != null) {
-					br.close();
-				}
-				if (fr != null) {
-					fr.close();
-				}
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		//listing files
+		
+		File[] files = path.listFiles(File::isFile);
+		System.out.println("FILES:");
+		for (File file : files) {
+			System.out.println(file);
 		}
-	}*/
-		
-	// Block try-with-resources
-	
-		
-	/*	
-		String path = "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
 
-		try(BufferedReader br=new BufferedReader(new FileReader(path))){
-			
-			String line = br.readLine();
-
-			while (line != null) {
-				System.out.println(line);
-				line = br.readLine();
-			}
-		} catch (IOException e) {
-			System.out.println("Error: " + e.getMessage());
-		}
+		//create subfolder
 		
-		*/
+		boolean success =new File(strPath + "\\SubFolder").mkdir();
+		System.out.println("Directory created successfully: " + success);
 		
-		
-		String[] lines= new String[] {"Good mornig", "Good Afternoon", "Good night"};
-		
-		String path = "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
-		
-		try (BufferedWriter bw=new BufferedWriter(new FileWriter(path, true))){
-			for(String line: lines) {
-				bw.write(line);
-				bw.newLine();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		sc.close();
 	}
 
 }
