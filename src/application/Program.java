@@ -95,6 +95,7 @@ public class Program {
 		
 		System.out.println("getName: " + path.getName());
 		System.out.println("getParent: " + path.getParent());
+		System.out.println("getPath " + path.getPath());
 		
 		sc.close();
 	}
