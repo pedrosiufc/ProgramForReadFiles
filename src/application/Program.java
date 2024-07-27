@@ -19,6 +19,7 @@ public class Program {
 
 		//Second example code
 		
+		/*
 		String path = "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -51,5 +52,25 @@ public class Program {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
+		
+	// Block try-with-resources
+	
+		
+		String path = "C:\\Users\\Pedro\\Git\\Eclipse_Workspace\\ProgramForReadFiles\\temp\\in.txt";
+
+		try(BufferedReader br=new BufferedReader(new FileReader(path))){
+			
+			String line = br.readLine();
+
+			while (line != null) {
+				System.out.println(line);
+				line = br.readLine();
+			}
+		} catch (IOException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		
+	}	
+		
 }
